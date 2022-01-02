@@ -1,11 +1,7 @@
-import './styles/styles.scss'
+import Navigation from "./routes/Navigation";
 
-function App() {
-  return (
-    <>
-    <h1 className='animate__animated animate__bounce'>Afexo</h1>
-    </>
-  );
-}
+const App = () => {
+  return <Navigation />;
+};
 
 export default App;
