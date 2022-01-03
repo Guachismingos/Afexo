@@ -1,0 +1,61 @@
+//fonts
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+//bootstrap
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap";
+
+$nav-link-active-bg: #553cdd;
+$header-color: #fdfdfd;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.main-color {
+  background-color: $header-color;
+}
+
+.nav-text {
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar-nav > {
+  .active {
+    color: $nav-link-active-bg !important;
+  }
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+}
+
+.navbar-text {
+  color: black !important;
+}
+
+.footer {
+  background-color: #182a69;
+  color: #fdfdfd;
+  h5 {
+    color: #fdfdfd;
+  }
+  small {
+    color: gray;
+  }
+}
+
+.nav .nav-link {
+  color: gray;
+}
+
+.btn-social-media {
+  background-color: transparent;
+  border-width: 0;
+}
+
+.nav .nav-link > :hover {
+  color: #fdfdfd;
+}
