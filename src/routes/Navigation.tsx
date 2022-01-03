@@ -5,11 +5,13 @@ import MainContent from "../components/main-container/MainContent";
 
 const Navigation = () => {
   return (
-    <BrowserRouter>
-      <Header />
-      <MainContent />
-      <Footer />
-    </BrowserRouter>
+    <div className="animate__animated animate__fadeIn">
+      <BrowserRouter>
+        <Header />
+        <MainContent />
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 };
 

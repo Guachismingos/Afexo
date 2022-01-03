@@ -1,4 +1,4 @@
-import { Col, Container, Row, Stack } from "react-bootstrap";
+import { Button, Col, Container, Row, Stack } from "react-bootstrap";
 import Menu from "../menu/Menu";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +11,8 @@ import {
 const Section1 = () => {
   return (
     <div>
-      <h5 className="ms-3">Menú</h5>
-      <hr className="ms-3" />
+      <h5>Menú</h5>
+      <hr />
       <Menu small={true} type="flex-column" />
     </div>
   );
@@ -49,7 +49,9 @@ const Section3 = () => {
         gap={5}
       >
         {icons.map(({ icon, link }, i) => (
-          <FontAwesomeIcon key={i} size="3x" href={link} icon={icon} />
+          <Button className="btn-social-media" href={link}>
+            <FontAwesomeIcon key={i} size="3x" icon={icon} />
+          </Button>
         ))}
       </Stack>
     </div>
@@ -71,16 +73,16 @@ const Footer = () => {
     <div className="footer">
       <Container className="py-5">
         <Row className="py-5">
-          <Col>
+          <Col className="pb-3">
             <Section1 />
           </Col>
-          <Col>
+          <Col className="pb-3">
             <Section2 />
           </Col>
-          <Col>
+          <Col className="pb-3">
             <Section3 />
           </Col>
-          <Col>
+          <Col className="pb-3">
             <Section4 />
           </Col>
         </Row>
