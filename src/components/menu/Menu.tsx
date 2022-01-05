@@ -2,7 +2,7 @@ import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import routes from "../../routes/routes";
 
-//type is the type of nav menu, horizontal or vertical, and small for the size
+//type is the type of nav menu, horizontal or vertical, and small for the size of the links
 const Menu = ({
   type = "",
   small = false,

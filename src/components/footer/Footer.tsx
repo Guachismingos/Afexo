@@ -13,7 +13,7 @@ const Section1 = () => {
     <div>
       <h5>Menú</h5>
       <hr />
-      <Menu small={true} type="flex-column" />
+      <Menu small={true} type="flex-column text-gray" />
     </div>
   );
 };
@@ -49,8 +49,8 @@ const Section3 = () => {
         gap={5}
       >
         {icons.map(({ icon, link }, i) => (
-          <Button className="btn-social-media" href={link}>
-            <FontAwesomeIcon key={i} size="3x" icon={icon} />
+          <Button key={i} className="btn-social-media" href={link}>
+            <FontAwesomeIcon size="3x" icon={icon} />
           </Button>
         ))}
       </Stack>
@@ -72,7 +72,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <Container className="py-5">
-        <Row className="py-5">
+        <Row lg={4} className="py-5">
           <Col className="pb-3">
             <Section1 />
           </Col>
@@ -87,7 +87,12 @@ const Footer = () => {
           </Col>
         </Row>
         <hr className="divider" />
-        <small className="fc-secondary">&copy; 2022, Afexo</small>
+        <div className="d-flex">
+          <small className="fc-secondary">&copy; 2022, Afexo</small>
+          <small className="fc-secondary ms-auto">
+            Afexo, Educación Integral
+          </small>
+        </div>
       </Container>
     </div>
   );
