@@ -13,8 +13,20 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+h2 {
+  color: #182a69;
+}
+
 .main-color {
   background-color: $header-color;
+}
+
+.secondary-color {
+  background-color: #ececec;
+}
+
+.bg-blue {
+  background-color: #182a69;
 }
 
 .nav-text {
@@ -36,26 +48,50 @@ body {
   color: black !important;
 }
 
+.btn-social-media {
+  background-color: transparent;
+  border-width: 0;
+}
+
+.btn-stories:hover {
+  background-color: rgba($color: gray, $alpha: 0.25);
+  border-width: 0;
+}
+
+.nav .nav-link > :hover {
+  color: $header-color;
+}
+
+.top-banner-section {
+  background-color: #182a69;
+  .banner {
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .banner-1 {
+    background-image: url("../assets/home-assets/top-banner-1.png");
+    background-position: right bottom;
+  }
+  .banner-2 {
+    background-image: url("../assets/home-assets/top-banner-2.png");
+    background-position: center bottom;
+  }
+  .banner-3 {
+    background-image: url("../assets/home-assets/top-banner-3.png");
+    background-position: left bottom;
+  }
+}
 .footer {
   background-color: #182a69;
-  color: #fdfdfd;
+  color: $header-color;
   h5 {
-    color: #fdfdfd;
+    color: $header-color;
   }
   small {
     color: gray;
   }
 }
 
-.nav .nav-link {
-  color: gray;
-}
-
-.btn-social-media {
-  background-color: transparent;
-  border-width: 0;
-}
-
-.nav .nav-link > :hover {
-  color: #fdfdfd;
+.justify {
+  text-align: justify;
 }
