@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import stories from "../data/people-stories/stories";
+import stories from "../data/stories";
 
 const TopBannerSection = () => {
   return (
@@ -106,7 +106,7 @@ const Section3 = () => {
               md={true}
               as={NavLink}
               key={title}
-              className="text-center btn-stories m-2 py-3 rounded link-dark"
+              className="text-center btn-stories py-3 rounded link-dark"
               to="/stories"
             >
               <Container>
@@ -138,13 +138,13 @@ const Section4 = () => {
 
 const Home = () => {
   return (
-    <div>
+    <Container fluid className="px-0">
       <TopBannerSection />
       <Section1 />
       <Section2 />
       <Section3 />
       <Section4 />
-    </div>
+    </Container>
   );
 };
 

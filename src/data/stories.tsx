@@ -1,13 +1,13 @@
 //Banner images
-import storyImg1 from "../../assets/stories-assets/story-1.png";
-import storyImg2 from "../../assets/stories-assets/story-2.png";
-import storyImg3 from "../../assets/stories-assets/story-3.png";
-import storyImg8 from "../../assets/stories-assets/story-8.png";
+import storyImg1 from "../assets/stories-assets/story-1.png";
+import storyImg2 from "../assets/stories-assets/story-2.png";
+import storyImg3 from "../assets/stories-assets/story-3.png";
+import storyImg8 from "../assets/stories-assets/story-8.png";
 //icon Images
-import iconImg1 from "../../assets/stories-assets/icon-1.png";
-import iconImg2 from "../../assets/stories-assets/icon-2.png";
-import iconImg3 from "../../assets/stories-assets/icon-3.png";
-import iconImg8 from "../../assets/stories-assets/icon-8.png";
+import iconImg1 from "../assets/stories-assets/icon-1.png";
+import iconImg2 from "../assets/stories-assets/icon-2.png";
+import iconImg3 from "../assets/stories-assets/icon-3.png";
+import iconImg8 from "../assets/stories-assets/icon-8.png";
 
 interface Story {
   title: string;
