@@ -19,6 +19,13 @@ h3,
   color: #182a69;
 }
 
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+}
 
 .main-color {
   background-color: $header-color;

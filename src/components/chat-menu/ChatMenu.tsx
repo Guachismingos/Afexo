@@ -1,16 +1,16 @@
 import SideBarOptions from "./components/SideBarOptions";
-import OptionContainer from "./components/OptionContainer";
 import { Container, Row, Col } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
 
 const NavigationChatMenu = () => {
   return (
-    <Container fluid>
+    <Container>
       <Row>
         <Col xl={4}>
           <SideBarOptions />
         </Col>
-        <Col className="bg-info">
-          <OptionContainer />
+        <Col>
+          <Outlet />
         </Col>
       </Row>
     </Container>

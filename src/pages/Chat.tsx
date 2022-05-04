@@ -24,7 +24,10 @@ const TopBannerSection = () => {
 
 const Chat = () => {
   return (
-    <Container fluid className="px-0">
+    <Container
+      fluid
+      className="px-0 pb-5 animate__animated animate__fadeIn animate__faster"
+    >
       <TopBannerSection />
       <ChatMenu />
     </Container>
