@@ -13,8 +13,18 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-h2 {
+h2,
+h3,
+.nav-link {
   color: #182a69;
+}
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
 }
 
 .main-color {

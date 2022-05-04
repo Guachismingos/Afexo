@@ -1,6 +1,9 @@
+import { DocumentSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import stories from "../data/people-stories/stories";
+import Story from "../interfaces/Story";
+import { useData } from "../context/DataContex";
 
 const TopBannerSection = () => {
   return (
@@ -73,50 +76,64 @@ const Section1 = () => {
   );
 };
 
-const Section2 = () => {
+const Section2 = ({ stories }: { stories: Story[] }) => {
   const [story] = stories;
-  const { title, body, name, age, image_url } = story;
+  const { title, body, author, age, image_url } = !!!story || story;
   return (
-    <Container fluid className="shadow-sm py-5">
-      <Container>
-        <Row>
-          <Col lg={12} xl={6}>
-            <h2 className="fw-bold">{title}</h2>
-            <p className="fs-5 justify">{body}</p>
-            <p className="fw-bold">{`-${name}, ${age} años.`}</p>
-          </Col>
-          <Col className="d-flex justify-content-center align-items-center">
-            <img className="my-sm-3" src={image_url} alt={title} width="75%" />
-          </Col>
-        </Row>
-      </Container>
+    <Container fluid className={story && "shadow-sm py-5"}>
+      {story && (
+        <Container>
+          <Row>
+            <Col lg={12} xl={6}>
+              <h2 className="fw-bold">{title}</h2>
+              <p className="fs-5 justify">{body}</p>
+              <p className="fw-bold">{`-${author}, ${age} años.`}</p>
+            </Col>
+            <Col className="d-flex justify-content-center align-items-center">
+              <img
+                className="my-sm-3"
+                src={image_url}
+                alt={title}
+                width="75%"
+              />
+            </Col>
+          </Row>
+        </Container>
+      )}
     </Container>
   );
 };
 
-const Section3 = () => {
+const Section3 = ({ stories }: { stories: Story[] }) => {
   return (
-    <Container fluid className="py-5 shadow-sm">
-      <Container>
-        <h2 className="fw-bold pb-3">Descubrí más historias</h2>
-        <Row className="py-5">
-          {stories.map(({ title, icon_url }) => (
-            <Col
-              sm={12}
-              md={true}
-              as={NavLink}
-              key={title}
-              className="text-center btn-stories m-2 py-3 rounded link-dark"
-              to="/stories"
-            >
-              <Container>
-                <img className="mb-3" src={icon_url} alt={title} width="70%" />
-              </Container>
-              <small className="fw-bold">{title}</small>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+    <Container fluid className={stories.length > 0 ? "shadow-sm py-5" : ""}>
+      {stories.length > 0 && (
+        <Container>
+          <h2 className="fw-bold pb-3">Descubrí más historias</h2>
+          <Row className="py-5">
+            {stories.map(({ id, title, icon_url }) => (
+              <Col
+                sm={12}
+                md={true}
+                as={NavLink}
+                key={id}
+                className="text-center btn-stories py-3 rounded link-dark"
+                to="/stories"
+              >
+                <Container>
+                  <img
+                    className="mb-3"
+                    src={icon_url}
+                    alt={title}
+                    width="70%"
+                  />
+                </Container>
+                <small className="fw-bold">{title}</small>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      )}
     </Container>
   );
 };
@@ -137,14 +154,33 @@ const Section4 = () => {
 };
 
 const Home = () => {
+  const { onGetData } = useData();
+  const [stories, setStories] = useState<Story[]>([]);
+
+  useEffect(() => {
+    const handleLoadStories = async () => {
+      onGetData("stories", (querySnapshot) => {
+        const docs: Story[] = [];
+        querySnapshot.forEach((doc: DocumentSnapshot) => {
+          docs.push({ ...doc.data(), id: doc.id });
+        });
+        setStories(docs);
+      });
+    };
+    handleLoadStories();
+  }, [onGetData]);
+
   return (
-    <div>
+    <Container
+      fluid
+      className="px-0 animate__animated animate__fadeIn animate__faster"
+    >
       <TopBannerSection />
       <Section1 />
-      <Section2 />
-      <Section3 />
+      <Section2 stories={stories} />
+      <Section3 stories={stories} />
       <Section4 />
-    </div>
+    </Container>
   );
 };
 
