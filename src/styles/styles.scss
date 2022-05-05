@@ -1,5 +1,6 @@
 //fonts
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 //bootstrap
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
@@ -39,6 +40,9 @@ h3,
   background-color: #182a69;
 }
 
+.bg-purple {
+  background-color: #f5f3fb;
+}
 .nav-text {
   font-weight: bold;
   font-family: "Poppins", sans-serif;

@@ -1,5 +1,6 @@
 import { Container, Col, Row } from "react-bootstrap";
 import ChatMenu from "../components/chat-menu/ChatMenu";
+import AskForm from "../components/chat-menu/components/AskForm";
 
 const TopBannerSection = () => {
   return (
@@ -26,10 +27,11 @@ const Chat = () => {
   return (
     <Container
       fluid
-      className="px-0 pb-5 animate__animated animate__fadeIn animate__faster"
+      className="px-0 animate__animated animate__fadeIn animate__faster"
     >
       <TopBannerSection />
       <ChatMenu />
+      <AskForm />
     </Container>
   );
 };
