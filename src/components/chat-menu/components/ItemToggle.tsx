@@ -19,7 +19,7 @@ const ItemToggle = ({
   );
 
   return (
-    <Container className="p-2 py-3 border-0" fluid onClick={action}>
+    <Container className="p-1 border-0 bg-white" fluid onClick={action}>
       <h5>
         {active === eventKey ? (
           <FontAwesomeIcon icon={faMinus} color="red" />

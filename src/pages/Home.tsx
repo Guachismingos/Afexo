@@ -158,16 +158,14 @@ const Home = () => {
   const [stories, setStories] = useState<Story[]>([]);
 
   useEffect(() => {
-    const handleLoadStories = async () => {
-      onGetData("stories", (querySnapshot) => {
-        const docs: Story[] = [];
-        querySnapshot.forEach((doc: DocumentSnapshot) => {
-          docs.push({ ...doc.data(), id: doc.id });
-        });
-        setStories(docs);
+    const unsubscribe = onGetData("stories", (querySnapShot) => {
+      const docs: Story[] = [];
+      querySnapShot.forEach((doc: DocumentSnapshot) => {
+        docs.push({ ...doc.data(), id: doc.id });
       });
-    };
-    handleLoadStories();
+      setStories(docs);
+    });
+    return unsubscribe;
   }, [onGetData]);
 
   return (
