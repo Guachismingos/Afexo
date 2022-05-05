@@ -4,7 +4,7 @@ import imgForm from "../../../assets/forms-assets/form-question-1.png";
 
 const AskForm = () => {
   return (
-    <Container fluid className="bg-purple py-5">
+    <Container fluid className="secondary-color py-5">
       <Container>
         <Row>
           <Col md={12} lg={6}>
@@ -59,7 +59,7 @@ const AskForm = () => {
                     placeholder="Escribe aquí"
                   />
                 </Form.Group>
-                <Form.Group className="d-flex gap-2">
+                <Form.Group className="d-flex gap-3">
                   <Button
                     variant="light"
                     type="reset"
@@ -67,7 +67,7 @@ const AskForm = () => {
                   >
                     Cancelar
                   </Button>
-                  <Button variant="primary" type="submit">
+                  <Button className="bg-blue" variant="primary" type="submit">
                     Enviar
                   </Button>
                 </Form.Group>

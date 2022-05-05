@@ -21,10 +21,10 @@ const TopBannerSection = () => {
             <h1 className="display-1 fw-bold">
               <small className="display-4">¡Tus dudas tienen</small> respuesta!
             </h1>
-            <h3>
+            <p className="fs-3 justify">
               ¿Buscás información sobre sexo, relaciones, tu cuerpo y más?.
-            </h3>
-            <h3>Acá te explicamos todo</h3>
+            </p>
+            <p className="fs-3 justify">Acá te explicamos todo.</p>
           </Container>
         </Col>
         <Col className="banner-3 banner" />
