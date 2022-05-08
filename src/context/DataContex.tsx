@@ -2,10 +2,10 @@ import { useContext, createContext, FC } from "react";
 import { db, onSnapshot, collection } from "../firebase/Firebase";
 import ICRUDFunctions from "../interfaces/ICRUDFunctions";
 
-const DataContex = createContext<ICRUDFunctions>({ onGetData: () => {} });
+const DataContext = createContext<ICRUDFunctions>({ onGetData: () => {} });
 
 export const useData = () => {
-  return useContext(DataContex);
+  return useContext(DataContext);
 };
 
 export const DataProvider: FC = ({ children }) => {
@@ -18,5 +18,5 @@ export const DataProvider: FC = ({ children }) => {
 
   const value = { onGetData };
 
-  return <DataContex.Provider value={value}>{children}</DataContex.Provider>;
+  return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
