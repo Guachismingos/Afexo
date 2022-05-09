@@ -1,15 +1,5 @@
-import {
-  useContext,
-  createContext,
-  FC,
-  useEffect,
-  useState,
-} from "react";
-import {
-  db,
-  collection,
-  getDocs,
-} from "../firebase/Firebase";
+import { useContext, createContext, FC, useEffect, useState } from "react";
+import { db, collection, getDocs } from "../firebase/Firebase";
 import ICRUDFunctions from "../interfaces/ICRUDFunctions";
 import IData from "../interfaces/IData";
 import Story from "../interfaces/Story";

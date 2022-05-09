@@ -4,6 +4,7 @@ import Header from "./header/Header";
 import MainContent from "./main-container/MainContent";
 import Footer from "./footer/Footer";
 import { DataProvider } from "../context/DataContex";
+import GoToTopButton from "./GoToTopButton";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Footer />
         </DataProvider>
       </BrowserRouter>
+      <GoToTopButton />
     </Container>
   );
 };
