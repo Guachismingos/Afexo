@@ -1,22 +1,57 @@
-import { useContext, createContext, FC } from "react";
-import { db, onSnapshot, collection } from "../firebase/Firebase";
+import {
+  useContext,
+  createContext,
+  FC,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import {
+  db,
+  onSnapshot,
+  collection,
+  QuerySnapshot,
+  DocumentSnapshot,
+  getDocs,
+} from "../firebase/Firebase";
 import ICRUDFunctions from "../interfaces/ICRUDFunctions";
+import IData from "../interfaces/IData";
+import Story from "../interfaces/Story";
 
-const DataContext = createContext<ICRUDFunctions>({ onGetData: () => {} });
+const DataContext = createContext<ICRUDFunctions>({
+  data: [],
+  handleSetCollectionRef: () => {},
+});
 
 export const useData = () => {
   return useContext(DataContext);
 };
 
 export const DataProvider: FC = ({ children }) => {
-  const onGetData = (
-    collectionRef: string,
-    callback: (querySnapshot: any) => void
-  ) => {
-    return onSnapshot(collection(db, collectionRef), callback);
-  };
+  const [loading, setLoading] = useState(true);
+  const [collectionRef, setCollectionRef] = useState("null");
+  const [data, setData] = useState<Story[] | IData[]>([]);
 
-  const value = { onGetData };
+  const handleSetCollectionRef = (collectionRef: string) =>
+    setCollectionRef(collectionRef);
+
+  const value = { data, handleSetCollectionRef, loading };
+
+  useEffect(() => {
+    setLoading(true);
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, collectionRef));
+      const docs: Story[] = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setData(docs);
+    };
+    fetchData();
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, [collectionRef]);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

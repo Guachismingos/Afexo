@@ -6,12 +6,14 @@ import routes from "../../routes/routes";
 const Menu = ({
   type = "",
   small = false,
+  onSelect,
 }: {
   type?: string;
   small?: boolean;
+  onSelect?: () => void;
 }) => {
   return (
-    <Nav className={`nav-text me-5 ${type}`}>
+    <Nav onClick={onSelect} className={`nav-text me-5 ${type}`}>
       {routes.map(({ to, name }) => (
         <Nav.Link className="me-auto" as={NavLink} key={name} to={to}>
           {small ? <small>{name}</small> : name}

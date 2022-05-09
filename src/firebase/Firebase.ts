@@ -1,6 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, onSnapshot, collection } from "firebase/firestore";
+import {
+  getFirestore,
+  onSnapshot,
+  collection,
+  QuerySnapshot,
+  DocumentSnapshot,
+  getDocs,
+} from "firebase/firestore";
 
 const app = initializeApp({
   apiKey: "AIzaSyCwilUMFkUs3q_V34bf8xYzovNRBBopLyM",
@@ -15,6 +22,15 @@ const db = getFirestore(app);
 
 const auth = getAuth(app);
 
-export { auth, db, signInWithEmailAndPassword, onSnapshot, collection };
+export {
+  auth,
+  db,
+  signInWithEmailAndPassword,
+  onSnapshot,
+  collection,
+  getDocs,
+};
+
+export type { QuerySnapshot, DocumentSnapshot };
 
 export default app;

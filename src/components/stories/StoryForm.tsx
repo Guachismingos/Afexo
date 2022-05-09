@@ -1,19 +1,18 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
-import imgForm from "../../../assets/forms-assets/form-question-1.png";
+import imgForm from "../../assets/forms-assets/form-question-1.png";
 
-const AskForm = () => {
+const StoryForm = () => {
   return (
     <Container fluid className="secondary-color py-5">
       <Container>
         <Row>
           <Col md={12} lg={6}>
             <Container>
-              <h2 className="fw-bold pb-2">¡Suave un toque!</h2>
+              <h2 className="fw-bold pb-2">A mí también me pasó</h2>
               <p className="justify pb-3">
-                ¿No encontraste lo que buscabas? No te preocupés, dejanos tu
-                pregunta acá abajo e intentaremos responderla lo más pronto
-                posible.
+                Y vos ¿Hiciste el papel o te salvaste?. Contanos tu historia acá
+                de manera anónima.
               </p>
               <Form
                 onSubmit={(e) => {
@@ -30,11 +29,12 @@ const AskForm = () => {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Email</Form.Label>
+                  <Form.Label>Edad</Form.Label>
                   <Form.Control
                     required
-                    type="email"
-                    placeholder="xxxxx@xxx.xxx"
+                    type="number"
+                    min={0}
+                    placeholder="Ingresa tu edad"
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -51,7 +51,7 @@ const AskForm = () => {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Tu pregunta</Form.Label>
+                  <Form.Label>Tu historia</Form.Label>
                   <Form.Control
                     required
                     as="textarea"
@@ -90,4 +90,4 @@ const AskForm = () => {
   );
 };
 
-export default AskForm;
+export default StoryForm;

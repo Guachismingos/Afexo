@@ -12,6 +12,7 @@ $header-color: #fdfdfd;
 
 body {
   font-family: "Poppins", sans-serif;
+  overflow: auto;
 }
 
 h2,
@@ -105,4 +106,18 @@ h3,
 
 .justify {
   text-align: justify;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.loading-container-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }

@@ -1,6 +1,7 @@
 import { Container, Col, Row } from "react-bootstrap";
 import ChatMenu from "../components/chat-menu/ChatMenu";
 import AskForm from "../components/chat-menu/components/AskForm";
+import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
 
 const TopBannerSection = () => {
   return (
@@ -29,6 +30,7 @@ const Chat = () => {
       fluid
       className="px-0 animate__animated animate__fadeIn animate__faster"
     >
+      <ScrollToTopOnMount />
       <TopBannerSection />
       <ChatMenu />
       <AskForm />

@@ -1,9 +1,10 @@
+import { Fragment } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import routes from "../../routes/routes";
 
 const MainContent = () => {
   return (
-    <div>
+    <Fragment>
       <Routes>
         {routes.map(({ path, Component, name, childs }) =>
           childs.length <= 0 ? (
@@ -19,7 +20,7 @@ const MainContent = () => {
         )}
         <Route path="/*" element={<Navigate to={routes[0].to} replace />} />
       </Routes>
-    </div>
+    </Fragment>
   );
 };
 

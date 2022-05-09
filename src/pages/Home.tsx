@@ -1,9 +1,9 @@
-import { DocumentSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Fragment, useEffect } from "react";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Story from "../interfaces/Story";
 import { useData } from "../context/DataContex";
+import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
 
 const TopBannerSection = () => {
   return (
@@ -18,10 +18,10 @@ const TopBannerSection = () => {
           xxl={5}
         >
           <Container fluid className="py-5 my-4">
-            <h1 className="display-1 fw-bold">
+            <h1 className="display-1 fw-bold pb-2">
               <small className="display-4">¡Tus dudas tienen</small> respuesta!
             </h1>
-            <p className="fs-3 justify">
+            <p className="fs-3 justify w-75">
               ¿Buscás información sobre sexo, relaciones, tu cuerpo y más?.
             </p>
             <p className="fs-3 justify">Acá te explicamos todo.</p>
@@ -38,7 +38,7 @@ const Section1 = () => {
       <Container>
         <Row>
           <Col xs={{ order: 1 }} lg={12} xl={6}>
-            <h2 className="fw-bold">
+            <h2 className="fw-bold pb-2">
               Aprendé a protegerte de las enfermedades de transmisión sexual
               durante el sexo oral
             </h2>
@@ -85,7 +85,7 @@ const Section2 = ({ stories }: { stories: Story[] }) => {
         <Container>
           <Row>
             <Col lg={12} xl={6}>
-              <h2 className="fw-bold">{title}</h2>
+              <h2 className="fw-bold pb-2">{title}</h2>
               <p className="fs-5 justify">{body}</p>
               <p className="fw-bold">{`-${author}, ${age} años.`}</p>
             </Col>
@@ -109,7 +109,7 @@ const Section3 = ({ stories }: { stories: Story[] }) => {
     <Container fluid className={stories.length > 0 ? "shadow-sm py-5" : ""}>
       {stories.length > 0 && (
         <Container>
-          <h2 className="fw-bold pb-3">Descubrí más historias</h2>
+          <h2 className="fw-bold pb-2">Descubrí más historias</h2>
           <Row className="py-5">
             {stories.map(({ id, title, icon_url }) => (
               <Col
@@ -154,31 +154,32 @@ const Section4 = () => {
 };
 
 const Home = () => {
-  const { onGetData } = useData();
-  const [stories, setStories] = useState<Story[]>([]);
+  const { data, handleSetCollectionRef, loading } = useData();
 
   useEffect(() => {
-    const unsubscribe = onGetData("stories", (querySnapShot) => {
-      const docs: Story[] = [];
-      querySnapShot.forEach((doc: DocumentSnapshot) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setStories(docs);
-    });
-    return unsubscribe;
-  }, [onGetData]);
+    handleSetCollectionRef("stories");
+  }, [handleSetCollectionRef]);
 
   return (
-    <Container
-      fluid
-      className="px-0 animate__animated animate__fadeIn animate__faster"
-    >
-      <TopBannerSection />
-      <Section1 />
-      <Section2 stories={stories} />
-      <Section3 stories={stories} />
-      <Section4 />
-    </Container>
+    <Fragment>
+      {loading ? (
+        <Container className="loading-container">
+          <Spinner className="bg-blue" animation="grow" />
+        </Container>
+      ) : (
+        <Container
+          fluid
+          className="px-0 animate__animated animate__fadeIn animate__faster"
+        >
+          <ScrollToTopOnMount />
+          <TopBannerSection />
+          <Section1 />
+          <Section2 stories={data} />
+          <Section3 stories={data} />
+          <Section4 />
+        </Container>
+      )}
+    </Fragment>
   );
 };
 
