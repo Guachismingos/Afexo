@@ -6,7 +6,6 @@ import {
   Spinner,
   Image,
   Carousel,
-  Card,
 } from "react-bootstrap";
 import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
 import StoryForm from "../components/stories/StoryForm";
