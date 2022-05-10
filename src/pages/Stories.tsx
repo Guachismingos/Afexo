@@ -3,7 +3,7 @@ import { Col, Container, Row, Spinner } from "react-bootstrap";
 import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
 import StoryForm from "../components/stories/StoryForm";
 import { useData } from "../context/DataContex";
-import Story from "../interfaces/Story";
+import IData from "../interfaces/IData";
 
 const TopBannerSection = () => {
   return (
@@ -27,7 +27,7 @@ const StoryContainer = ({
   story,
   classVariables,
 }: {
-  story: Story;
+  story: IData;
   classVariables?: string;
 }) => {
   const { title, body, image_url } = story;
@@ -75,7 +75,7 @@ const Stories = () => {
         >
           <ScrollToTopOnMount />
           <TopBannerSection />
-          {data.slice(0, 3).map((story: Story, idx) => (
+          {data.slice(0, 3).map((story: IData, idx) => (
             <StoryContainer
               key={story.id}
               story={story}

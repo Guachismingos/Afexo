@@ -1,9 +1,9 @@
 import { Fragment, useEffect } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import Story from "../interfaces/Story";
 import { useData } from "../context/DataContex";
 import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
+import IData from '../interfaces/IData';
 
 const TopBannerSection = () => {
   return (
@@ -76,7 +76,7 @@ const Section1 = () => {
   );
 };
 
-const Section2 = ({ stories }: { stories: Story[] }) => {
+const Section2 = ({ stories }: { stories: IData[] }) => {
   const [story] = stories;
   const { title, body, author, age, image_url } = !!!story || story;
   return (
@@ -104,7 +104,7 @@ const Section2 = ({ stories }: { stories: Story[] }) => {
   );
 };
 
-const Section3 = ({ stories }: { stories: Story[] }) => {
+const Section3 = ({ stories }: { stories: IData[] }) => {
   return (
     <Container fluid className={stories.length > 0 ? "shadow-sm py-5" : ""}>
       {stories.length > 0 && (

@@ -2,7 +2,6 @@ import { useContext, createContext, FC, useEffect, useState } from "react";
 import { db, collection, getDocs } from "../firebase/Firebase";
 import ICRUDFunctions from "../interfaces/ICRUDFunctions";
 import IData from "../interfaces/IData";
-import Story from "../interfaces/Story";
 
 const DataContext = createContext<ICRUDFunctions>({
   data: [],
@@ -16,7 +15,7 @@ export const useData = () => {
 export const DataProvider: FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [collectionRef, setCollectionRef] = useState("null");
-  const [data, setData] = useState<Story[] | IData[]>([]);
+  const [data, setData] = useState<IData[]>([]);
 
   const handleSetCollectionRef = (collectionRef: string) =>
     setCollectionRef(collectionRef);
@@ -27,13 +26,26 @@ export const DataProvider: FC = ({ children }) => {
     setLoading(true);
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(db, collectionRef));
-      const docs: Story[] = [];
+      const docs: IData[] = [];
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
       });
       setData(docs);
     };
     fetchData();
+
+    const fetch = async () => {
+      const querySnapshot = await getDocs(collection(db, "data/questions/puberty"));
+      const docs: IData[] = [];
+      
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+        
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      
+    };
+    fetch();
     setTimeout(() => {
       setLoading(false);
     }, 500);
