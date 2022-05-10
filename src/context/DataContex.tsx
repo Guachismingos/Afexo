@@ -35,15 +35,16 @@ export const DataProvider: FC = ({ children }) => {
     fetchData();
 
     const fetch = async () => {
-      const querySnapshot = await getDocs(collection(db, "data/questions/puberty"));
+      const querySnapshot = await getDocs(
+        collection(db, "data/questions/puberty")
+      );
       const docs: IData[] = [];
-      
+
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
-        
+
         docs.push({ ...doc.data(), id: doc.id });
       });
-      
     };
     fetch();
     setTimeout(() => {

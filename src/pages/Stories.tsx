@@ -1,5 +1,13 @@
 import { Fragment, useEffect } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Spinner,
+  Image,
+  Carousel,
+  Card,
+} from "react-bootstrap";
 import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
 import StoryForm from "../components/stories/StoryForm";
 import { useData } from "../context/DataContex";
@@ -44,7 +52,7 @@ const StoryContainer = ({
           </Col>
           <Col className="d-flex justify-content-center align-items-center">
             <Container>
-            <img className="my-sm-3 px-2" src={image_url} alt={title} width="100%" />
+              <Image className="px-2" fluid src={image_url} alt={title} />
             </Container>
           </Col>
         </Row>
@@ -53,12 +61,38 @@ const StoryContainer = ({
   );
 };
 
-const MoreStories = () => {
+const MoreStories = ({ data }: { data: IData[] }) => {
+  const newArray: IData[][] = [];
+  for (let index = 0; index < data.length; index += 3) {
+    newArray.push(data.slice(index, index + 3));
+  }
+
   return (
     <Container fluid>
       <Container className="pb-5">
-        <hr className="divider mb-5"/>
+        <hr className="divider mb-5" />
         <h2 className="fw-bold pb-2 text-center">Descubrí más historias</h2>
+        <Carousel>
+          {newArray.map((values) => (
+            <Carousel.Item key={values[0].id}>
+              <Row>
+                {values.map(({ id, image_url }, idx) => (
+                  <Col
+                    className="d-flex justify-content-center align-items-center my-5"
+                    md={4}
+                    key={id}
+                  >
+                    <Image
+                      width={`${idx !== 1 ? "80%" : "100%"}`}
+                      fluid
+                      src={image_url}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </Container>
     </Container>
   );
@@ -91,7 +125,7 @@ const Stories = () => {
               classVariables={`${idx % 2 && "secondary-color"}`}
             />
           ))}
-          <MoreStories />
+          <MoreStories data={data} />
           <StoryForm />
         </Container>
       )}

@@ -86,7 +86,7 @@ const Footer = () => {
             <Section4 />
           </Col>
         </Row>
-        <hr className="divider" />
+        <hr />
         <div className="d-flex">
           <small className="fc-secondary">&copy; 2022, Afexo</small>
           <small className="fc-secondary ms-auto">

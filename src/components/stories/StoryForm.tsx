@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
 import imgForm from "../../assets/forms-assets/form-question-1.png";
 
@@ -76,11 +76,11 @@ const StoryForm = () => {
           </Col>
           <Col xs={1} md={1} lg={6} className="pb-5">
             <Container className="d-flex h-100 justify-content-center align-items-center">
-              <img
-                className="my-sm-3"
+              <Image
+                className="px-5"
+                fluid
                 src={imgForm}
                 alt="has tu pregunta"
-                width="75%"
               />
             </Container>
           </Col>

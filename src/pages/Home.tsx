@@ -1,9 +1,9 @@
 import { Fragment, useEffect } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useData } from "../context/DataContex";
 import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
-import IData from '../interfaces/IData';
+import IData from "../interfaces/IData";
 
 const TopBannerSection = () => {
   return (
@@ -90,7 +90,7 @@ const Section2 = ({ stories }: { stories: IData[] }) => {
               <p className="fw-bold">{`-${author}, ${age} años.`}</p>
             </Col>
             <Col className="d-flex justify-content-center align-items-center">
-              <img
+              <Image
                 className="my-sm-3"
                 src={image_url}
                 alt={title}
@@ -121,7 +121,8 @@ const Section3 = ({ stories }: { stories: IData[] }) => {
                 to="/stories"
               >
                 <Container>
-                  <img
+                  <Image
+                    fluid
                     className="mb-3"
                     src={icon_url}
                     alt={title}
