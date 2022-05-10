@@ -37,13 +37,15 @@ const StoryContainer = ({
   return (
     <Container className={`py-5 ${classVariables}`} fluid>
       <Container>
-        <Row>
+        <Row className="gap-5">
           <Col lg={{ span: 6, order }} md={12}>
             <h2 className="fw-bold pb-2">{title}</h2>
             <p className="fs-5 justify">{body}</p>
           </Col>
           <Col className="d-flex justify-content-center align-items-center">
-            <img className="my-sm-3" src={image_url} alt={title} width="75%" />
+            <Container>
+            <img className="my-sm-3 px-2" src={image_url} alt={title} width="100%" />
+            </Container>
           </Col>
         </Row>
       </Container>
@@ -52,7 +54,14 @@ const StoryContainer = ({
 };
 
 const MoreStories = () => {
-  return <>fefefef</>;
+  return (
+    <Container fluid>
+      <Container className="pb-5">
+        <hr className="divider mb-5"/>
+        <h2 className="fw-bold pb-2 text-center">Descubrí más historias</h2>
+      </Container>
+    </Container>
+  );
 };
 
 const Stories = () => {

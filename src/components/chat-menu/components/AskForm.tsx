@@ -4,7 +4,7 @@ import imgForm from "../../../assets/forms-assets/form-question-1.png";
 
 const AskForm = () => {
   return (
-    <Container fluid className="secondary-color py-5">
+    <Container fluid className="secondary-color py-5 shadow-sm">
       <Container>
         <Row>
           <Col md={12} lg={6}>

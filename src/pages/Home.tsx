@@ -80,7 +80,7 @@ const Section2 = ({ stories }: { stories: IData[] }) => {
   const [story] = stories;
   const { title, body, author, age, image_url } = !!!story || story;
   return (
-    <Container fluid className={story && "shadow-sm py-5"}>
+    <Container fluid className={story && "py-5"}>
       {story && (
         <Container>
           <Row>
@@ -106,7 +106,7 @@ const Section2 = ({ stories }: { stories: IData[] }) => {
 
 const Section3 = ({ stories }: { stories: IData[] }) => {
   return (
-    <Container fluid className={stories.length > 0 ? "shadow-sm py-5" : ""}>
+    <Container fluid className={stories.length > 0 ? "py-5" : ""}>
       {stories.length > 0 && (
         <Container>
           <h2 className="fw-bold pb-2">Descubrí más historias</h2>
