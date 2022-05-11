@@ -77,12 +77,12 @@ const Section1 = () => {
 };
 
 const Section2 = ({ stories }: { stories: IData[] }) => {
-  const [story, setStory] = useState<IData>({});
-  !!stories && setStory(stories[0]);
-  const { title, body, author, age, image_url } = !!!story || story;
+  const { title, body, author, age, image_url } = !!stories[0] && stories[0];
   return (
-    <Container fluid className={story && "py-5"}>
-      {story && (
+    <Container fluid 
+    className={!!stories[0] && "py-5"}
+    >
+      {!!stories[0] && (
         <Container>
           <Row>
             <Col lg={12} xl={6}>

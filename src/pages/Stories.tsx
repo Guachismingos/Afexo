@@ -113,7 +113,7 @@ const Stories = () => {
         >
           <ScrollToTopOnMount />
           <TopBannerSection />
-          {data[0].slice(0, 3).map((story: IData, idx) => (
+          {!!data[0] && data[0].slice(0, 3).map((story: IData, idx) => (
             <StoryContainer
               key={story.id}
               story={story}

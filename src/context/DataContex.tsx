@@ -42,7 +42,6 @@ export const DataProvider: FC = ({ children }) => {
     collectionsRef.forEach((collectionRef) => {
       fetchData(collectionRef);
     });
-
     setTimeout(() => {
       setLoading(false);
     }, 500);
