@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from 'react';
 import { Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useData } from "../context/DataContex";
@@ -77,7 +77,8 @@ const Section1 = () => {
 };
 
 const Section2 = ({ stories }: { stories: IData[] }) => {
-  const [story] = stories;
+  const [story, setStory] = useState<IData>({});
+  !!stories && setStory(stories[0]);
   const { title, body, author, age, image_url } = !!!story || story;
   return (
     <Container fluid className={story && "py-5"}>
@@ -106,8 +107,8 @@ const Section2 = ({ stories }: { stories: IData[] }) => {
 
 const Section3 = ({ stories }: { stories: IData[] }) => {
   return (
-    <Container fluid className={stories.length > 0 ? "py-5" : ""}>
-      {stories.length > 0 && (
+    <Container fluid className={stories && stories.length > 0 ? "py-5" : ""}>
+      {stories && stories.length > 0 && (
         <Container>
           <h2 className="fw-bold pb-2">Descubrí más historias</h2>
           <Row className="py-5">
