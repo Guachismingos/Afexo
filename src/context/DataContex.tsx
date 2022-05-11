@@ -1,10 +1,26 @@
-import { useContext, createContext, FC, useEffect, useState } from "react";
+import {
+  useContext,
+  createContext,
+  FC,
+  useEffect,
+  useState,
+  SetStateAction,
+  Dispatch,
+} from "react";
 import { db, collection, getDocs } from "../firebase/Firebase";
 import ICRUDFunctions from "../interfaces/ICRUDFunctions";
 import IData from "../interfaces/IData";
 
 const DataContext = createContext<ICRUDFunctions>({
-  data: [],
+  stories: [],
+  puberty: [],
+  sex: [],
+  relationships: [],
+  consent: [],
+  contraceptives: [],
+  pregnacy: [],
+  protectYourself: [],
+  sexualOrientation: [],
 });
 
 export const useData = () => {
@@ -13,39 +29,55 @@ export const useData = () => {
 
 export const DataProvider: FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<IData[][]>([]);
-  const [collectionsRef] = useState(
-    [
-      "stories",
-      "data/questions/puberty",
-      "data/questions/sex",
-      "data/questions/relationships",
-      "data/questions/consent",
-      "data/questions/contraceptives",
-      "data/questions/pregnacy",
-      "data/questions/protectyourself",
-      "data/questions/sexualorientation",
-    ]);
+  const [stories, setStories] = useState<IData[]>([]);
+  const [puberty, setPuberty] = useState<IData[]>([]);
+  const [sex, setSex] = useState<IData[]>([]);
+  const [relationships, setRelationships] = useState<IData[]>([]);
+  const [consent, setConsent] = useState<IData[]>([]);
+  const [contraceptives, setContraceptives] = useState<IData[]>([]);
+  const [pregnacy, setPregnacy] = useState<IData[]>([]);
+  const [protectYourself, setProtectYourself] = useState<IData[]>([]);
+  const [sexualOrientation, setSexualOrientation] = useState<IData[]>([]);
 
-  const value = { data, loading };
+  const value = {
+    stories,
+    loading,
+    puberty,
+    sex,
+    relationships,
+    consent,
+    contraceptives,
+    pregnacy,
+    protectYourself,
+    sexualOrientation,
+  };
 
   useEffect(() => {
     setLoading(true);
-    const fetchData = async (collectionRef: string) => {
+    const fetchData = async (
+      collectionRef: string,
+      set: Dispatch<SetStateAction<IData[]>>
+    ) => {
       const querySnapshot = await getDocs(collection(db, collectionRef));
       const docs: IData[] = [];
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
       });
-      setData(dataRef => [...dataRef, docs]);
+      set(docs);
     };
-    collectionsRef.forEach((collectionRef) => {
-      fetchData(collectionRef);
-    });
     setTimeout(() => {
+      fetchData("stories", setStories);
+      fetchData("data/questions/puberty", setPuberty);
+      fetchData("data/questions/sex", setSex);
+      fetchData("data/questions/relationships", setRelationships);
+      fetchData("data/questions/consent", setConsent);
+      fetchData("data/questions/contraceptives", setContraceptives);
+      fetchData("data/questions/pregnacy", setPregnacy);
+      fetchData("data/questions/protectyourself", setProtectYourself);
+      fetchData("data/questions/sexualorientation", setSexualOrientation);
       setLoading(false);
     }, 500);
-  }, [collectionsRef]);
+  }, []);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

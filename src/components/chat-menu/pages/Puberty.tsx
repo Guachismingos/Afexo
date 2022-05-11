@@ -9,7 +9,7 @@ import ItemToggle from "../components/ItemToggle";
 const Puberty = () => {
   const [active, setActive] = useState("0");
 
-  const { data } = useData();
+  const { puberty } = useData();
 
   return (
     <Container
@@ -24,7 +24,7 @@ const Puberty = () => {
         sana del crecimiento.
       </p>
       <Accordion flush defaultActiveKey="0">
-        {data[1].map(({ id, title, body }, idx) => (
+        {puberty.map(({ id, title, body }, idx) => (
           <Card key={id} className="border-0">
             <Card.Header className="p-0 border-0">
               <ItemToggle

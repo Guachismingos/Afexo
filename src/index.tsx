@@ -4,10 +4,13 @@ import App from "./components/App";
 
 import "animate.css";
 import "./styles/styles.scss";
+import { DataProvider } from "./context/DataContex";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DataProvider>
+      <App />
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

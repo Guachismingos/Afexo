@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 import { Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useData } from "../context/DataContex";
@@ -79,9 +79,7 @@ const Section1 = () => {
 const Section2 = ({ stories }: { stories: IData[] }) => {
   const { title, body, author, age, image_url } = !!stories[0] && stories[0];
   return (
-    <Container fluid 
-    className={!!stories[0] && "py-5"}
-    >
+    <Container fluid className={!!stories[0] && "py-5"}>
       {!!stories[0] && (
         <Container>
           <Row>
@@ -107,8 +105,8 @@ const Section2 = ({ stories }: { stories: IData[] }) => {
 
 const Section3 = ({ stories }: { stories: IData[] }) => {
   return (
-    <Container fluid className={stories && stories.length > 0 ? "py-5" : ""}>
-      {stories && stories.length > 0 && (
+    <Container fluid className={!!stories ? "py-5" : ""}>
+      {!!stories && (
         <Container>
           <h2 className="fw-bold pb-2">Descubrí más historias</h2>
           <Row className="py-5">
@@ -156,8 +154,8 @@ const Section4 = () => {
 };
 
 const Home = () => {
-  const { data, loading } = useData();
-  
+  const { stories, loading } = useData();
+
   return (
     <Fragment>
       {loading ? (
@@ -172,8 +170,8 @@ const Home = () => {
           <ScrollToTopOnMount />
           <TopBannerSection />
           <Section1 />
-          <Section2 stories={data[0]} />
-          <Section3 stories={data[0]} />
+          <Section2 stories={stories} />
+          <Section3 stories={stories} />
           <Section4 />
         </Container>
       )}

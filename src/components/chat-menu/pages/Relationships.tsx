@@ -9,7 +9,7 @@ import ItemToggle from "../components/ItemToggle";
 const Relationships = () => {
   const [active, setActive] = useState("0");
 
-  const { data } = useData();
+  const { relationships } = useData();
 
   return (
     <Container
@@ -23,7 +23,7 @@ const Relationships = () => {
         descubriéndola.Este es un proceso normal y no tenés que avergonzarte.
       </p>
       <Accordion flush defaultActiveKey="0">
-        {data[3].map(({ id, title, body }, idx) => (
+        {relationships.map(({ id, title, body }, idx) => (
           <Card key={id} className="border-0">
             <Card.Header className="p-0 border-0">
               <ItemToggle

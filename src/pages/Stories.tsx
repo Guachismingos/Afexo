@@ -1,12 +1,5 @@
 import { Fragment } from "react";
-import {
-  Col,
-  Container,
-  Row,
-  Spinner,
-  Image,
-  Carousel,
-} from "react-bootstrap";
+import { Col, Container, Row, Spinner, Image, Carousel } from "react-bootstrap";
 import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
 import StoryForm from "../components/stories/StoryForm";
 import { useData } from "../context/DataContex";
@@ -98,7 +91,7 @@ const MoreStories = ({ data }: { data: IData[] }) => {
 };
 
 const Stories = () => {
-  const { data, loading } = useData();
+  const { stories, loading } = useData();
 
   return (
     <Fragment>
@@ -113,14 +106,14 @@ const Stories = () => {
         >
           <ScrollToTopOnMount />
           <TopBannerSection />
-          {!!data[0] && data[0].slice(0, 3).map((story: IData, idx) => (
+          {stories.slice(0, 3).map((story: IData, idx) => (
             <StoryContainer
               key={story.id}
               story={story}
               classVariables={`${idx % 2 && "secondary-color"}`}
             />
           ))}
-          <MoreStories data={data[0]} />
+          <MoreStories data={stories} />
           <StoryForm />
         </Container>
       )}

@@ -1,7 +1,15 @@
 import IData from "./IData";
 
 interface ICRUDFunctions {
-  data: IData[][];
+  stories: IData[];
+  puberty: IData[];
+  sex: IData[];
+  relationships: IData[];
+  consent: IData[];
+  contraceptives: IData[];
+  pregnacy: IData[];
+  protectYourself: IData[];
+  sexualOrientation: IData[];
   loading?: boolean;
 }
 
