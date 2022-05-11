@@ -12,6 +12,7 @@ $header-color: #fdfdfd;
 
 body {
   font-family: "Poppins", sans-serif;
+  overflow: auto;
 }
 
 h2,
@@ -33,16 +34,13 @@ h3,
 }
 
 .secondary-color {
-  background-color: #ececec;
+  background-color: #f5f3fb;
 }
 
 .bg-blue {
   background-color: #182a69;
 }
 
-.bg-purple {
-  background-color: #f5f3fb;
-}
 .nav-text {
   font-weight: bold;
   font-family: "Poppins", sans-serif;
@@ -108,4 +106,33 @@ h3,
 
 .justify {
   text-align: justify;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.loading-container-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.go-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.divider {
+  border: none;
+  border-top: 4px dotted black;
+  color: black;
+  background-color: $header-color;
+  margin-left: 15%;
+  margin-right: 15%;
 }

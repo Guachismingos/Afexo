@@ -1,9 +1,9 @@
-import { DocumentSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Fragment } from "react";
+import { Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import Story from "../interfaces/Story";
 import { useData } from "../context/DataContex";
+import ScrollToTopOnMount from "../components/ScrollToTopOnMount";
+import IData from "../interfaces/IData";
 
 const TopBannerSection = () => {
   return (
@@ -18,13 +18,13 @@ const TopBannerSection = () => {
           xxl={5}
         >
           <Container fluid className="py-5 my-4">
-            <h1 className="display-1 fw-bold">
+            <h1 className="display-1 fw-bold pb-2">
               <small className="display-4">¡Tus dudas tienen</small> respuesta!
             </h1>
-            <h3>
+            <p className="fs-3 justify w-75">
               ¿Buscás información sobre sexo, relaciones, tu cuerpo y más?.
-            </h3>
-            <h3>Acá te explicamos todo</h3>
+            </p>
+            <p className="fs-3 justify">Acá te explicamos todo.</p>
           </Container>
         </Col>
         <Col className="banner-3 banner" />
@@ -38,7 +38,7 @@ const Section1 = () => {
       <Container>
         <Row>
           <Col xs={{ order: 1 }} lg={12} xl={6}>
-            <h2 className="fw-bold">
+            <h2 className="fw-bold pb-2">
               Aprendé a protegerte de las enfermedades de transmisión sexual
               durante el sexo oral
             </h2>
@@ -76,21 +76,21 @@ const Section1 = () => {
   );
 };
 
-const Section2 = ({ stories }: { stories: Story[] }) => {
+const Section2 = ({ stories }: { stories: IData[] }) => {
   const [story] = stories;
   const { title, body, author, age, image_url } = !!!story || story;
   return (
-    <Container fluid className={story && "shadow-sm py-5"}>
+    <Container fluid className={story && "py-5"}>
       {story && (
         <Container>
           <Row>
             <Col lg={12} xl={6}>
-              <h2 className="fw-bold">{title}</h2>
+              <h2 className="fw-bold pb-2">{title}</h2>
               <p className="fs-5 justify">{body}</p>
               <p className="fw-bold">{`-${author}, ${age} años.`}</p>
             </Col>
             <Col className="d-flex justify-content-center align-items-center">
-              <img
+              <Image
                 className="my-sm-3"
                 src={image_url}
                 alt={title}
@@ -104,12 +104,12 @@ const Section2 = ({ stories }: { stories: Story[] }) => {
   );
 };
 
-const Section3 = ({ stories }: { stories: Story[] }) => {
+const Section3 = ({ stories }: { stories: IData[] }) => {
   return (
-    <Container fluid className={stories.length > 0 ? "shadow-sm py-5" : ""}>
+    <Container fluid className={stories.length > 0 ? "py-5" : ""}>
       {stories.length > 0 && (
         <Container>
-          <h2 className="fw-bold pb-3">Descubrí más historias</h2>
+          <h2 className="fw-bold pb-2">Descubrí más historias</h2>
           <Row className="py-5">
             {stories.map(({ id, title, icon_url }) => (
               <Col
@@ -121,7 +121,8 @@ const Section3 = ({ stories }: { stories: Story[] }) => {
                 to="/stories"
               >
                 <Container>
-                  <img
+                  <Image
+                    fluid
                     className="mb-3"
                     src={icon_url}
                     alt={title}
@@ -154,31 +155,28 @@ const Section4 = () => {
 };
 
 const Home = () => {
-  const { onGetData } = useData();
-  const [stories, setStories] = useState<Story[]>([]);
-
-  useEffect(() => {
-    const unsubscribe = onGetData("stories", (querySnapShot) => {
-      const docs: Story[] = [];
-      querySnapShot.forEach((doc: DocumentSnapshot) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setStories(docs);
-    });
-    return unsubscribe;
-  }, [onGetData]);
-
+  const { data, loading } = useData();
+  
   return (
-    <Container
-      fluid
-      className="px-0 animate__animated animate__fadeIn animate__faster"
-    >
-      <TopBannerSection />
-      <Section1 />
-      <Section2 stories={stories} />
-      <Section3 stories={stories} />
-      <Section4 />
-    </Container>
+    <Fragment>
+      {loading ? (
+        <Container className="loading-container">
+          <Spinner className="bg-blue" animation="grow" />
+        </Container>
+      ) : (
+        <Container
+          fluid
+          className="px-0 animate__animated animate__fadeIn animate__faster"
+        >
+          <ScrollToTopOnMount />
+          <TopBannerSection />
+          <Section1 />
+          <Section2 stories={data[0]} />
+          <Section3 stories={data[0]} />
+          <Section4 />
+        </Container>
+      )}
+    </Fragment>
   );
 };
 

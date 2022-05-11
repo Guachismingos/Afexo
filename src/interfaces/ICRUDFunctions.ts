@@ -1,8 +1,8 @@
+import IData from "./IData";
+
 interface ICRUDFunctions {
-  onGetData: (
-    collectionRef: string,
-    callback: (querySnapshot: any) => void
-  ) => void;
+  data: IData[][];
+  loading?: boolean;
 }
 
 export default ICRUDFunctions;

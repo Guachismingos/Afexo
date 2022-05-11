@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { DocumentSnapshot } from "firebase/firestore";
+import { useState } from "react";
 import { Accordion, Card, Container } from "react-bootstrap";
 import { useData } from "../../../context/DataContex";
 
@@ -7,28 +6,17 @@ import DOMPurify from "dompurify";
 
 import ItemToggle from "../components/ItemToggle";
 
-import IData from "../../../interfaces/IData";
-
 const Puberty = () => {
-  const { onGetData } = useData();
   const [active, setActive] = useState("0");
 
-  const [data, setData] = useState<IData[]>([]);
-
-  useEffect(() => {
-    const unsubscribe = onGetData("puberty", (querySnapShot) => {
-      const docs: IData[] = [];
-      querySnapShot.forEach((doc: DocumentSnapshot) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setData(docs);
-    });
-    return unsubscribe;
-  }, [onGetData]);
+  const { data } = useData();
 
   return (
-    <Container fluid className="pt-5">
-      <h2 className="fw-bold">Pubertad</h2>
+    <Container
+      fluid
+      className="pt-5 animate__animated animate__fadeIn animate__fast"
+    >
+      <h2 className="fw-bold pb-2">Pubertad</h2>
       <p className="justify">
         La pubertad se refiere al período de tiempo en que tu cuerpo pasa de ser
         niño/a a ser adulto. Tu cuerpo atraviesa muchos cambios que se suceden
@@ -36,7 +24,7 @@ const Puberty = () => {
         sana del crecimiento.
       </p>
       <Accordion flush defaultActiveKey="0">
-        {data.map(({ id, title, body }, idx) => (
+        {data[1].map(({ id, title, body }, idx) => (
           <Card key={id} className="border-0">
             <Card.Header className="p-0 border-0">
               <ItemToggle
