@@ -5,7 +5,6 @@ import IData from "../interfaces/IData";
 
 const DataContext = createContext<ICRUDFunctions>({
   data: [],
-  handleSetCollectionRef: () => {},
 });
 
 export const useData = () => {
@@ -14,43 +13,40 @@ export const useData = () => {
 
 export const DataProvider: FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [collectionRef, setCollectionRef] = useState("null");
-  const [data, setData] = useState<IData[]>([]);
+  const [data, setData] = useState<IData[][]>([]);
+  const [collectionsRef] = useState(
+    [
+      "stories",
+      "data/questions/puberty",
+      "data/questions/sex",
+      "data/questions/relationships",
+      "data/questions/consent",
+      "data/questions/contraceptives",
+      "data/questions/pregnacy",
+      "data/questions/protectyourself",
+      "data/questions/sexualorientation",
+    ]);
 
-  const handleSetCollectionRef = (collectionRef: string) =>
-    setCollectionRef(collectionRef);
-
-  const value = { data, handleSetCollectionRef, loading };
+  const value = { data, loading };
 
   useEffect(() => {
     setLoading(true);
-    const fetchData = async () => {
+    const fetchData = async (collectionRef: string) => {
       const querySnapshot = await getDocs(collection(db, collectionRef));
       const docs: IData[] = [];
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
       });
-      setData(docs);
+      setData(dataRef => [...dataRef, docs]);
     };
-    fetchData();
+    collectionsRef.forEach((collectionRef) => {
+      fetchData(collectionRef);
+    });
 
-    const fetch = async () => {
-      const querySnapshot = await getDocs(
-        collection(db, "data/questions/puberty")
-      );
-      const docs: IData[] = [];
-
-      querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-    };
-    fetch();
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, [collectionRef]);
+  }, []);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

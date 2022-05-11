@@ -1,8 +1,7 @@
 import IData from "./IData";
 
 interface ICRUDFunctions {
-  data: IData[];
-  handleSetCollectionRef: (collectionRef: string) => void;
+  data: IData[][];
   loading?: boolean;
 }
 

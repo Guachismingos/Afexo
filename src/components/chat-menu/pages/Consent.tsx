@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Accordion, Card, Container } from "react-bootstrap";
 import { useData } from "../../../context/DataContex";
 
@@ -9,11 +9,7 @@ import ItemToggle from "../components/ItemToggle";
 const Consent = () => {
   const [active, setActive] = useState("0");
 
-  const { data, handleSetCollectionRef } = useData();
-
-  useEffect(() => {
-    handleSetCollectionRef("sex");
-  }, [handleSetCollectionRef]);
+  const { data } = useData();
 
   return (
     <Container
@@ -27,7 +23,7 @@ const Consent = () => {
         descubriéndola.Este es un proceso normal y no tenés que avergonzarte.
       </p>
       <Accordion flush defaultActiveKey="0">
-        {data.map(({ id, title, body }, idx) => (
+        {data[4].map(({ id, title, body }, idx) => (
           <Card key={id} className="border-0">
             <Card.Header className="p-0 border-0">
               <ItemToggle

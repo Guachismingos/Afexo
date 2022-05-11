@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Accordion, Card, Container } from "react-bootstrap";
 import { useData } from "../../../context/DataContex";
 
@@ -9,11 +9,7 @@ import ItemToggle from "../components/ItemToggle";
 const Puberty = () => {
   const [active, setActive] = useState("0");
 
-  const { data, handleSetCollectionRef } = useData();
-
-  useEffect(() => {
-    handleSetCollectionRef("puberty");
-  }, [handleSetCollectionRef]);
+  const { data } = useData();
 
   return (
     <Container
@@ -28,7 +24,7 @@ const Puberty = () => {
         sana del crecimiento.
       </p>
       <Accordion flush defaultActiveKey="0">
-        {data.map(({ id, title, body }, idx) => (
+        {data[1].map(({ id, title, body }, idx) => (
           <Card key={id} className="border-0">
             <Card.Header className="p-0 border-0">
               <ItemToggle

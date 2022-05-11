@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useData } from "../context/DataContex";
@@ -155,12 +155,8 @@ const Section4 = () => {
 };
 
 const Home = () => {
-  const { data, handleSetCollectionRef, loading } = useData();
-
-  useEffect(() => {
-    handleSetCollectionRef("stories");
-  }, [handleSetCollectionRef]);
-
+  const { data, loading } = useData();
+  
   return (
     <Fragment>
       {loading ? (
@@ -175,8 +171,8 @@ const Home = () => {
           <ScrollToTopOnMount />
           <TopBannerSection />
           <Section1 />
-          <Section2 stories={data} />
-          <Section3 stories={data} />
+          <Section2 stories={data[0]} />
+          <Section3 stories={data[0]} />
           <Section4 />
         </Container>
       )}

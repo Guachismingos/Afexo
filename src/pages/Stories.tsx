@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import {
   Col,
   Container,
@@ -98,11 +98,7 @@ const MoreStories = ({ data }: { data: IData[] }) => {
 };
 
 const Stories = () => {
-  const { data, handleSetCollectionRef, loading } = useData();
-
-  useEffect(() => {
-    handleSetCollectionRef("stories");
-  }, [handleSetCollectionRef]);
+  const { data, loading } = useData();
 
   return (
     <Fragment>
@@ -117,14 +113,14 @@ const Stories = () => {
         >
           <ScrollToTopOnMount />
           <TopBannerSection />
-          {data.slice(0, 3).map((story: IData, idx) => (
+          {data[0].slice(0, 3).map((story: IData, idx) => (
             <StoryContainer
               key={story.id}
               story={story}
               classVariables={`${idx % 2 && "secondary-color"}`}
             />
           ))}
-          <MoreStories data={data} />
+          <MoreStories data={data[0]} />
           <StoryForm />
         </Container>
       )}
