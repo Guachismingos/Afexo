@@ -46,7 +46,7 @@ export const DataProvider: FC = ({ children }) => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, []);
+  }, [collectionsRef]);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
